@@ -1,3 +1,6 @@
+import storage from "./storage.js";
+console.log(storage);
+
 const formNode = document.querySelector(".bill-form");
 const formTitle = document.querySelector(".form-title");
 const sendBillBtn = formNode.elements.submit;
@@ -25,6 +28,8 @@ sendBillBtn.addEventListener("click", (event) => {
   //TODO: save current counters values into Local storage with key flat and currentValue
 });
 
+// console.log(formNode.elements);
+
 sendCurrentCountersBtn.addEventListener("click", (event) => {
   event.preventDefault();
   createForm(sendPrevCountersBtn, "Обчислити", "ПОПЕРЕДНІ");
@@ -40,7 +45,7 @@ function createForm(button, buttonText, counterState) {
   for (let i = 0; i < 13; i += 1) {
     allEl += `<label>
     ${i + 1} квартира
-    <input name="$counter${i + 1} type="text" />
+    <input name="counter${i + 1}" type="text" />
   </label>`;
   }
   formNode.innerHTML = allEl;
