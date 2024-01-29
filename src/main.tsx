@@ -4,11 +4,9 @@ import App from "./App.tsx";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import "./index.css";
-import { MantineProvider, createTheme } from "@mantine/core";
+import { MantineProvider } from "@mantine/core";
 
-const theme = createTheme({
-  /** Put your mantine theme override here */
-});
+/* const theme = createTheme({}); */
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
