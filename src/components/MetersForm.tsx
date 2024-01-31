@@ -2,19 +2,16 @@ import { Button } from "@mantine/core";
 import { useAppDispatch, useAppSelector } from "../hooks/typedHooks";
 import { selectMeters } from "../redux/meters/selectors";
 import MeterInputGroup from "./MeteInputGroup";
-import ResultsView from "./ResultsView";
-import { useState } from "react";
 import { calculateBills } from "../redux/meters/metersSlice";
+import { VIEWS, setCurrentView } from "../redux/app/appSlice";
 
 export default function MetersForm() {
   const dispatch = useAppDispatch();
   const meters = useAppSelector(selectMeters);
 
-  const [isResultVisible, setResultVisible] = useState(false);
-
   function handleSubmit() {
     dispatch(calculateBills());
-    setResultVisible(true);
+    dispatch(setCurrentView(VIEWS.RESULT_VIEW));
   }
 
   return (
@@ -25,7 +22,6 @@ export default function MetersForm() {
         ))}
       </div>
       <Button onClick={handleSubmit}>Submit</Button>
-      {isResultVisible && <ResultsView />}
     </>
   );
 }

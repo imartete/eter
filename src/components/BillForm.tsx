@@ -1,11 +1,14 @@
-import { ActionIcon, Flex, TextInput } from "@mantine/core";
+import { Button, Text, TextInput } from "@mantine/core";
 import { useState } from "react";
 import { useAppDispatch } from "../hooks/typedHooks";
 import { addBill } from "../redux/meters/metersSlice";
-import { IconCheck, IconCurrencyHryvnia } from "@tabler/icons-react";
+import { IconCurrencyHryvnia } from "@tabler/icons-react";
+import { VIEWS, setCurrentView } from "../redux/app/appSlice";
 
 export default function BillForm() {
   const [bill, setBill] = useState("");
+  const [buttonText, setButtonText] = useState("Далі");
+
   const dispatch = useAppDispatch();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
@@ -14,31 +17,22 @@ export default function BillForm() {
 
   function handleSubmit() {
     dispatch(addBill(parseInt(bill)));
+    setButtonText("Оновити суму");
+    dispatch(setCurrentView(VIEWS.METERS_FORM));
   }
 
   return (
     <>
-      <p>
-        Введіть суму, яку вам виставлено в останньому рахунку, натисніть зелений
-        прапорець для підтвердження
-      </p>
-      <Flex justify="center" gap="md">
-        <TextInput
-          value={bill}
-          onInput={handleChange}
-          rightSection={<IconCurrencyHryvnia size={20} />}
-        />
-        <ActionIcon
-          variant="light"
-          color="teal"
-          size="lg"
-          radius="xs"
-          aria-label="Settings"
-          onClick={handleSubmit}
-        >
-          <IconCheck size={20} />
-        </ActionIcon>
-      </Flex>
+      <Text mb="md">Введіть суму рахунку Львівобленерго</Text>
+      <TextInput
+        value={bill}
+        onInput={handleChange}
+        rightSection={<IconCurrencyHryvnia size={20} />}
+        mb="md"
+      />
+      <Button fullWidth disabled={bill.length < 1} onClick={handleSubmit}>
+        {buttonText}
+      </Button>
     </>
   );
 }
