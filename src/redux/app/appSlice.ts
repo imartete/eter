@@ -20,6 +20,7 @@ const appSlice = createSlice({
   reducers: {
     setCurrentView: (state, action: PayloadAction<string>) => {
       state.currentView = action.payload;
+      window.scrollTo({ top: 0, behavior: "smooth" });
     },
   },
 });

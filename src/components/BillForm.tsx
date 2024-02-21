@@ -1,38 +1,39 @@
-import { Button, Text, TextInput } from "@mantine/core";
+import { Box, Button, NumberInput, Text } from "@mantine/core";
 import { useState } from "react";
-import { useAppDispatch } from "../hooks/typedHooks";
+import { useAppDispatch, useAppSelector } from "../hooks/typedHooks";
 import { addBill } from "../redux/meters/metersSlice";
 import { IconCurrencyHryvnia } from "@tabler/icons-react";
 import { VIEWS, setCurrentView } from "../redux/app/appSlice";
+import { selectBill } from "../redux/meters/selectors";
 
 export default function BillForm() {
-  const [bill, setBill] = useState("");
+  const billFromStore = useAppSelector(selectBill);
+  const [bill, setBill] = useState(billFromStore);
   const [buttonText, setButtonText] = useState("Далі");
 
   const dispatch = useAppDispatch();
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
-    setBill(e.currentTarget.value);
-  }
-
   function handleSubmit() {
-    dispatch(addBill(parseInt(bill)));
+    if (typeof bill === "string") throw new Error(); // TODO: error message
+    dispatch(addBill(bill));
     setButtonText("Оновити суму");
     dispatch(setCurrentView(VIEWS.METERS_FORM));
   }
 
   return (
-    <>
-      <Text mb="md">Введіть суму рахунку Львівобленерго</Text>
-      <TextInput
+    <Box mb="xl">
+      <Text>Введіть суму рахунку Львівобленерго</Text>
+      <NumberInput
         value={bill}
-        onInput={handleChange}
-        rightSection={<IconCurrencyHryvnia size={20} />}
+        onChange={setBill}
+        leftSection={<IconCurrencyHryvnia size={18} />}
         mb="md"
+        hideControls
+        min={0}
       />
-      <Button fullWidth disabled={bill.length < 1} onClick={handleSubmit}>
+      <Button fullWidth disabled={!bill} onClick={handleSubmit}>
         {buttonText}
       </Button>
-    </>
+    </Box>
   );
 }

@@ -4,33 +4,28 @@ import App from "./App.tsx";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import "./index.css";
-import { MantineProvider } from "@mantine/core";
+import { MantineProvider, createTheme, Paper, Text } from "@mantine/core";
 
-/* const theme = createTheme({}); */
+const theme = createTheme({
+  components: {
+    Paper: Paper.extend({
+      defaultProps: {
+        shadow: "xs",
+        p: "sm",
+        mb: "md",
+        style: { backgroundColor: "#272727" },
+      },
+    }),
+
+    Text: Text.extend({
+      defaultProps: { mb: "md", style: { textAlign: "center" } },
+    }),
+  },
+});
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <MantineProvider
-      defaultColorScheme="dark"
-      /* theme={{
-        components: {
-          Flex: {
-            defaultProps: { gap: "md", direction: "column" },
-          },
-
-          Button: {
-            defaultProps: { color: "indigo", size: "md" },
-          },
-          NumberInput: {
-            defaultProps: { size: "xs", variant: "filled" },
-          },
-        },
-        // colorScheme: "dark",
-        defaultGradient: { deg: 65, from: "indigo", to: "#A5D8FF" },
-      }}
-      withGlobalStyles
-      withNormalizeCSS */
-    >
+    <MantineProvider defaultColorScheme="dark" theme={theme}>
       <Provider store={store}>
         <App />
       </Provider>

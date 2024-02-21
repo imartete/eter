@@ -4,7 +4,7 @@ import { meterCalculatedData, meterData } from "../../types";
 interface MetersState {
   items: meterData[];
   calculatedItems: meterCalculatedData[];
-  bill: number;
+  bill: number | string;
   billsDifference: number;
 }
 
@@ -18,8 +18,8 @@ const initialMeters = Array.from(new Array(METERS_AMOUNT)).map((_, i) => {
 const initialState: MetersState = {
   items: initialMeters,
   calculatedItems: [],
-  bill: 0,
-  billsDifference: 0,
+  bill: "",
+  billsDifference: NaN,
 };
 
 const metersSlice = createSlice({
@@ -59,6 +59,7 @@ const metersSlice = createSlice({
         0,
       );
 
+      if (typeof state.bill === "string") throw new Error(""); // TODO: error message
       const billsDifference = (state.bill - differencesSum) / METERS_AMOUNT;
 
       state.billsDifference = billsDifference;

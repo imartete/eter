@@ -1,4 +1,4 @@
-import { Button } from "@mantine/core";
+import { Button, Text } from "@mantine/core";
 import { useAppDispatch, useAppSelector } from "../hooks/typedHooks";
 import { selectMeters } from "../redux/meters/selectors";
 import MeterInputGroup from "./MeteInputGroup";
@@ -16,12 +16,15 @@ export default function MetersForm() {
 
   return (
     <>
-      <div>
-        {meters.map((meter, i) => (
-          <MeterInputGroup key={"meter" + i} meterId={meter.id} />
-        ))}
-      </div>
-      <Button onClick={handleSubmit}>Submit</Button>
+      <Text>
+        Введіть попередні та поточні значення лічильників для кожної квартири
+      </Text>
+      {meters.map((meter, i) => (
+        <MeterInputGroup key={"meter" + i} meterId={meter.id} />
+      ))}
+      <Button fullWidth onClick={handleSubmit}>
+        Обчислити
+      </Button>
     </>
   );
 }
