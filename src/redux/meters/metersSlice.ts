@@ -12,7 +12,7 @@ const METERS_AMOUNT = 13;
 const TARIF = 2.64;
 
 const initialMeters = Array.from(new Array(METERS_AMOUNT)).map((_, i) => {
-  return { id: i, previous: 0, current: 0 };
+  return { id: i, previous: "", current: "" };
 });
 
 const initialState: MetersState = {
@@ -48,6 +48,11 @@ const metersSlice = createSlice({
     },
     calculateBills: (state) => {
       const dirrefenceArray = state.items.map((item) => {
+        if (
+          typeof item.current === "string" ||
+          typeof item.previous === "string"
+        )
+          throw new Error("Received string from NumberInput"); // TODO: error message
         return {
           id: item.id,
           bill: (item.current - item.previous) * TARIF,
@@ -66,7 +71,7 @@ const metersSlice = createSlice({
 
       const finalBillsArray = dirrefenceArray.map((item) => {
         const bill = item.bill + billsDifference;
-        return { id: item.id, bill: Math.floor(bill) };
+        return { id: item.id, bill: Math.ceil(bill) };
       });
 
       state.calculatedItems = finalBillsArray;
