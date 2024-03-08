@@ -28,7 +28,7 @@ export default function MeterInputGroup({ meter }: { meter: meterData }) {
       <Paper>
         <Center>
           <Text my="sm" fw={700}>
-            {meter.id + 1} квартира
+            {meter.number} квартира
           </Text>
         </Center>
         <form

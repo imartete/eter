@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { meterCalculatedData, meterData } from "../../types";
+import { BREAKING_APARTMENT, TARIF, METERS_AMOUNT } from "../../constants";
 
 interface MetersState {
   items: meterData[];
@@ -8,11 +9,13 @@ interface MetersState {
   billsDifference: number;
 }
 
-const METERS_AMOUNT = 13;
-const TARIF = 2.64;
-
+let number = 1;
 const initialMeters = Array.from(new Array(METERS_AMOUNT)).map((_, i) => {
-  return { id: i, previous: "", current: "" };
+  if (i === BREAKING_APARTMENT) {
+    number = 1;
+    return { id: i, number: number++, previous: "", current: "" };
+  }
+  return { id: i, number: number++, previous: "", current: "" };
 });
 
 const initialState: MetersState = {
@@ -55,6 +58,7 @@ const metersSlice = createSlice({
           throw new Error("Received string from NumberInput"); // TODO: error message
         return {
           id: item.id,
+          number: item.number,
           bill: (item.current - item.previous) * TARIF,
         };
       });
@@ -71,7 +75,7 @@ const metersSlice = createSlice({
 
       const finalBillsArray = dirrefenceArray.map((item) => {
         const bill = item.bill + billsDifference;
-        return { id: item.id, bill: Math.ceil(bill) };
+        return { id: item.id, number: item.number, bill: Math.ceil(bill) };
       });
 
       state.calculatedItems = finalBillsArray;
