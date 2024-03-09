@@ -30,8 +30,9 @@ export default function ResultsView() {
     if (currVal.id === 0) {
       accumulator += `\n Правий під'їзд:`;
     }
-    if (currVal.id === BREAKING_APARTMENT) accumulator += `\n Лівий під'їзд:`;
-    return accumulator + `\n ${currVal.number} квартира: ${currVal.bill} грн.`;
+    if (currVal.id === BREAKING_APARTMENT)
+      accumulator += `\n \n Лівий під'їзд: `;
+    return accumulator + `\n ${currVal.number} кв.: ${currVal.bill} грн.`;
   }, message);
 
   function handleBack() {
