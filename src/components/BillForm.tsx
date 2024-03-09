@@ -1,10 +1,11 @@
-import { Box, Button, NumberInput, Text } from "@mantine/core";
+import { Box, Button, NumberInput, Text, rem } from "@mantine/core";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/typedHooks";
 import { addBill } from "../redux/meters/metersSlice";
-import { IconCurrencyHryvnia } from "@tabler/icons-react";
+import { IconCheck, IconCurrencyHryvnia } from "@tabler/icons-react";
 import { VIEWS, setCurrentView } from "../redux/app/appSlice";
 import { selectBill } from "../redux/meters/selectors";
+import { notifications } from "@mantine/notifications";
 
 export default function BillForm() {
   const billFromStore = useAppSelector(selectBill);
@@ -18,6 +19,12 @@ export default function BillForm() {
     dispatch(addBill(bill));
     setButtonText("Оновити суму");
     dispatch(setCurrentView(VIEWS.METERS_FORM));
+    notifications.show({
+      message: "Успішно оновлено рахунок",
+      color: "green",
+      icon: <IconCheck style={{ width: rem(20), height: rem(20) }} />,
+      withCloseButton: false,
+    });
   }
 
   return (
@@ -26,7 +33,9 @@ export default function BillForm() {
       <NumberInput
         value={bill}
         onChange={setBill}
-        leftSection={<IconCurrencyHryvnia size={18} />}
+        leftSection={
+          <IconCurrencyHryvnia style={{ width: rem(20), height: rem(20) }} />
+        }
         mb="md"
         hideControls
         min={0}

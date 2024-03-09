@@ -1,4 +1,4 @@
-import { Button, Text } from "@mantine/core";
+import { Badge, Button, Center, Divider, Text } from "@mantine/core";
 import { useAppDispatch, useAppSelector } from "../hooks/typedHooks";
 import { selectMeters } from "../redux/meters/selectors";
 import MeterInputGroup from "./MeterInputGroup";
@@ -25,15 +25,22 @@ export default function MetersForm() {
 
   return (
     <>
+      <Divider my="md" />
       <Text>
         Введіть попередні та поточні значення лічильників для кожної квартири
       </Text>
       {meters.map((meter) => {
         return (
           <div key={"meter" + meter.id}>
-            {meter.id === 0 && <Text fw={700}>Правий під'їзд:</Text>}
+            {meter.id === 0 && (
+              <Center mb="sm">
+                <Badge variant="default">Правий під'їзд</Badge>
+              </Center>
+            )}
             {meter.id === BREAKING_APARTMENT && (
-              <Text fw={700}>Лівий під'їзд:</Text>
+              <Center mb="sm">
+                <Badge variant="default">Лівий під'їзд</Badge>
+              </Center>
             )}
             <MeterInputGroup meter={meter} />
           </div>

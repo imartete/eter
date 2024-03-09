@@ -1,10 +1,14 @@
 import {
   ActionIcon,
+  Badge,
   Box,
   Button,
+  Center,
   CopyButton,
+  Flex,
   Paper,
   Text,
+  rem,
 } from "@mantine/core";
 import { useAppDispatch, useAppSelector } from "../hooks/typedHooks";
 import { selectCalculatedBills } from "../redux/meters/selectors";
@@ -30,8 +34,6 @@ export default function ResultsView() {
     return accumulator + `\n ${currVal.number} квартира: ${currVal.bill} грн.`;
   }, message);
 
-  console.log(messageToCopy);
-
   function handleBack() {
     dispatch(setCurrentView(VIEWS.BILL_FORM));
   }
@@ -44,9 +46,9 @@ export default function ResultsView() {
           variant="default"
           onClick={handleBack}
         >
-          <IconArrowLeft size={18} />
+          <IconArrowLeft style={{ width: rem(20), height: rem(20) }} />
         </ActionIcon>
-        <Text size="lg" fw={700} mb="xl">
+        <Text size="lg" fw={700} mb="lg">
           Результат
         </Text>
       </Box>
@@ -59,7 +61,11 @@ export default function ResultsView() {
             onClick={copy}
             mb="md"
             leftSection={
-              copied ? <IconCheck size={18} /> : <IconCopy size={18} />
+              copied ? (
+                <IconCheck style={{ width: rem(20), height: rem(20) }} />
+              ) : (
+                <IconCopy style={{ width: rem(20), height: rem(20) }} />
+              )
             }
           >
             {copied ? "Скопійовано" : "Копіювати всі"}
@@ -69,16 +75,23 @@ export default function ResultsView() {
       {bills?.map((bill) => {
         return (
           <div key={"result" + bill.id}>
-            {bill.id === 0 && <Text fw={700}>Правий під'їзд:</Text>}
+            {bill.id === 0 && (
+              <Center mb="sm">
+                <Badge variant="default">Правий під'їзд</Badge>
+              </Center>
+            )}
             {bill.id === BREAKING_APARTMENT && (
-              <Text fw={700}>Лівий під'їзд:</Text>
+              <Center mb="sm">
+                <Badge variant="default">Лівий під'їзд</Badge>
+              </Center>
             )}
             <Paper>
-              <Text mb="0">
-                {bill.number} квартира: &nbsp;
-                <span style={{ fontWeight: 700 }}>{bill.bill} </span>
-                грн.
-              </Text>
+              <Flex justify={"space-between"}>
+                <Text mb="0">{bill.number} квартира:</Text>
+                <Text mb="0">
+                  <span style={{ fontWeight: 700 }}>{bill.bill} </span> грн.
+                </Text>
+              </Flex>
             </Paper>
           </div>
         );

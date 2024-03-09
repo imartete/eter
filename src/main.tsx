@@ -4,7 +4,9 @@ import App from "./App.tsx";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import "./index.css";
+import "@mantine/notifications/styles.css";
 import { MantineProvider, createTheme, Paper, Text } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
 
 const theme = createTheme({
   components: {
@@ -25,10 +27,11 @@ const theme = createTheme({
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <MantineProvider defaultColorScheme="dark" theme={theme}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <MantineProvider defaultColorScheme="dark" theme={theme}>
+        <Notifications position="top-center" />
         <App />
-      </Provider>
-    </MantineProvider>
+      </MantineProvider>
+    </Provider>
   </React.StrictMode>,
 );

@@ -1,4 +1,4 @@
-import { Center, NumberInput, Paper, Text } from "@mantine/core";
+import { Group, NumberInput, Paper, Text, rem } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconDialpadFilled, IconHistory } from "@tabler/icons-react";
 import { useAppDispatch } from "../hooks/typedHooks";
@@ -26,11 +26,9 @@ export default function MeterInputGroup({ meter }: { meter: meterData }) {
   return (
     <>
       <Paper>
-        <Center>
-          <Text my="sm" fw={700}>
-            {meter.number} квартира
-          </Text>
-        </Center>
+        <Text my="sm" fw={700} style={{ textAlign: "start" }}>
+          {meter.number} квартира
+        </Text>
         <form
           onChange={(e: React.ChangeEvent<HTMLFormElement>) => {
             dispatch(
@@ -42,25 +40,33 @@ export default function MeterInputGroup({ meter }: { meter: meterData }) {
             );
           }}
         >
-          <NumberInput
-            id="previous"
-            label="Попередні"
-            {...form.getInputProps("previous")}
-            leftSection={<IconHistory size={18} />}
-            mb="md"
-            hideControls
-            min={0}
-            style={{ position: "relative" }}
-          />
-          <NumberInput
-            id="current"
-            label="Теперішні"
-            {...form.getInputProps("current")}
-            leftSection={<IconDialpadFilled size={18} />}
-            mb="md"
-            hideControls
-            min={0}
-          />
+          <Group grow preventGrowOverflow gap="md" align="start">
+            <NumberInput
+              id="previous"
+              label="Попередні"
+              {...form.getInputProps("previous")}
+              leftSection={
+                <IconHistory style={{ width: rem(20), height: rem(20) }} />
+              }
+              mb="md"
+              hideControls
+              min={0}
+              style={{}}
+            />
+            <NumberInput
+              id="current"
+              label="Теперішні"
+              {...form.getInputProps("current")}
+              leftSection={
+                <IconDialpadFilled
+                  style={{ width: rem(20), height: rem(20) }}
+                />
+              }
+              mb="md"
+              hideControls
+              min={0}
+            />
+          </Group>
         </form>
       </Paper>
     </>
