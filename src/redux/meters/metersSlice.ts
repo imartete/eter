@@ -9,6 +9,8 @@ interface MetersState {
   billsDifference: number;
 }
 
+const savedMeters = localStorage.getItem("meters");
+
 let number = 1;
 const initialMeters = Array.from(new Array(METERS_AMOUNT)).map((_, i) => {
   if (i === BREAKING_APARTMENT) {
@@ -19,7 +21,7 @@ const initialMeters = Array.from(new Array(METERS_AMOUNT)).map((_, i) => {
 });
 
 const initialState: MetersState = {
-  items: initialMeters,
+  items: savedMeters ? (JSON.parse(savedMeters) as meterData[]) : initialMeters,
   calculatedItems: [],
   bill: "",
   billsDifference: NaN,

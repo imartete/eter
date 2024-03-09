@@ -21,6 +21,14 @@ export default function MetersForm() {
   function handleSubmit() {
     dispatch(calculateBills());
     dispatch(setCurrentView(VIEWS.RESULT_VIEW));
+    localStorage.setItem(
+      "meters",
+      JSON.stringify(
+        meters.map((meter) => {
+          return { ...meter, current: "", previous: meter.current };
+        }),
+      ),
+    );
   }
 
   return (
