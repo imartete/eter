@@ -2,7 +2,7 @@ import { Box, Button, NumberInput, Text, rem } from "@mantine/core";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/typedHooks";
 import { addBill } from "../redux/meters/metersSlice";
-import { IconCheck, IconCurrencyHryvnia } from "@tabler/icons-react";
+import { IconCheck, IconCurrencyHryvnia, IconX } from "@tabler/icons-react";
 import { VIEWS, setCurrentView } from "../redux/app/appSlice";
 import { selectBill } from "../redux/meters/selectors";
 import { notifications } from "@mantine/notifications";
@@ -16,9 +16,19 @@ export default function BillForm() {
   const dispatch = useAppDispatch();
 
   function handleSubmit() {
-    if (typeof bill === "string")
-      throw new Error("Bill is string type, while it should be number");
-    dispatch(addBill(bill));
+    try {
+      if (typeof bill === "string")
+        throw new Error("Bill is string type, while it should be number");
+      dispatch(addBill(bill));
+    } catch (e) {
+      notifications.show({
+        message: t`Something went wrong`,
+        color: "red",
+        icon: <IconX style={{ width: rem(20), height: rem(20) }} />,
+        withCloseButton: false,
+      });
+      return;
+    }
     setButtonText(t`Update bill sum`);
     dispatch(setCurrentView(VIEWS.METERS_FORM));
     notifications.show({

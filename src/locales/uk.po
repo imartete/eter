@@ -22,11 +22,11 @@ msgstr "{0} квартира"
 msgid "Apt. {number} - {bill} UAH"
 msgstr "{number} кв. - {bill} грн."
 
-#: src/components/BillForm.tsx:24
+#: src/components/BillForm.tsx:35
 msgid "Bill updated"
 msgstr "Успішно оновлено рахунок"
 
-#: src/components/MetersForm.tsx:63
+#: src/components/MetersForm.tsx:75
 msgid "Calculate"
 msgstr "Обчислити"
 
@@ -46,11 +46,11 @@ msgstr "Копіювати всі"
 msgid "Current"
 msgstr "Теперішні"
 
-#: src/components/MetersForm.tsx:39
+#: src/components/MetersForm.tsx:51
 msgid "Enter previous and current meter values of each apartment"
 msgstr "Введіть попередні та поточні значення лічильників для кожної квартири"
 
-#: src/components/BillForm.tsx:34
+#: src/components/BillForm.tsx:45
 msgid "Enter total bill sum"
 msgstr "Введіть загальну суму рахунку"
 
@@ -58,7 +58,7 @@ msgstr "Введіть загальну суму рахунку"
 msgid "Hello everyone! Please send your payment for electricity used the previous month until {formattedDueDate}, thanks!"
 msgstr "Вітаю! Будь ласка, надішліть ваш платіж за спожиту електроенергію за попередній місяць до {formattedDueDate}, дякую!"
 
-#: src/components/MetersForm.tsx:54
+#: src/components/MetersForm.tsx:66
 #: src/components/ResultsView.tsx:95
 msgid "Left entrance"
 msgstr "Лівий під'їзд"
@@ -79,7 +79,7 @@ msgstr "Попередні"
 msgid "Result"
 msgstr "Результат"
 
-#: src/components/MetersForm.tsx:47
+#: src/components/MetersForm.tsx:59
 #: src/components/ResultsView.tsx:88
 msgid "Right entrance"
 msgstr "Правий під'їзд"
@@ -88,11 +88,16 @@ msgstr "Правий під'їзд"
 msgid "Right entrance:"
 msgstr "Правий під'їзд:"
 
+#: src/components/BillForm.tsx:25
+#: src/components/MetersForm.tsx:29
+msgid "Something went wrong"
+msgstr "Виникла помилка при додаванні даних"
+
 #: src/components/ResultsView.tsx:106
 msgid "UAH"
 msgstr "грн."
 
-#: src/components/BillForm.tsx:21
+#: src/components/BillForm.tsx:32
 msgid "Update bill sum"
 msgstr "Оновити суму"
 

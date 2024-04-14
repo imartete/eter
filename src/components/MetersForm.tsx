@@ -1,11 +1,13 @@
-import { Badge, Button, Center, Divider, Text } from "@mantine/core";
+import { Badge, Button, Center, Divider, Text, rem } from "@mantine/core";
 import { useAppDispatch, useAppSelector } from "../hooks/typedHooks";
 import { selectMeters } from "../redux/meters/selectors";
 import MeterInputGroup from "./MeterInputGroup";
 import { calculateBills } from "../redux/meters/metersSlice";
 import { VIEWS, setCurrentView } from "../redux/app/appSlice";
 import { BREAKING_APARTMENT } from "../constants";
-import { Trans } from "@lingui/macro";
+import { Trans, t } from "@lingui/macro";
+import { notifications } from "@mantine/notifications";
+import { IconX } from "@tabler/icons-react";
 
 export default function MetersForm() {
   const dispatch = useAppDispatch();
@@ -20,7 +22,17 @@ export default function MetersForm() {
   );
 
   function handleSubmit() {
-    dispatch(calculateBills());
+    try {
+      dispatch(calculateBills());
+    } catch (e) {
+      notifications.show({
+        message: t`Something went wrong`,
+        color: "red",
+        icon: <IconX style={{ width: rem(20), height: rem(20) }} />,
+        withCloseButton: false,
+      });
+      return;
+    }
     dispatch(setCurrentView(VIEWS.RESULT_VIEW));
     localStorage.setItem(
       "meters",
