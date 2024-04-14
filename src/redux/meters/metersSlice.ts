@@ -57,7 +57,9 @@ const metersSlice = createSlice({
           typeof item.current === "string" ||
           typeof item.previous === "string"
         )
-          throw new Error("Received string from NumberInput"); // TODO: error message
+          throw new Error(
+            "Meter value is string type, while it should be number",
+          );
         return {
           id: item.id,
           number: item.number,
@@ -70,7 +72,8 @@ const metersSlice = createSlice({
         0,
       );
 
-      if (typeof state.bill === "string") throw new Error(""); // TODO: error message
+      if (typeof state.bill === "string")
+        throw new Error("Bill is string type, while it should be number");
       const billsDifference = (state.bill - differencesSum) / METERS_AMOUNT;
 
       state.billsDifference = billsDifference;

@@ -4,9 +4,12 @@ import { IconDialpadFilled, IconHistory } from "@tabler/icons-react";
 import { useAppDispatch } from "../hooks/typedHooks";
 import { addMeters } from "../redux/meters/metersSlice";
 import { meterData } from "../types";
+import { Trans, msg, t } from "@lingui/macro";
+import { useLingui } from "@lingui/react";
 
 export default function MeterInputGroup({ meter }: { meter: meterData }) {
   const dispatch = useAppDispatch();
+  const { _ } = useLingui();
   const form = useForm({
     validateInputOnChange: true,
     initialValues: { previous: meter.previous, current: meter.current },
@@ -14,11 +17,11 @@ export default function MeterInputGroup({ meter }: { meter: meterData }) {
     validate: {
       previous: (value: string | number) =>
         value.toString().length > 6
-          ? "Показниики повинні містити 6 символів"
+          ? t`Value has to be not less than 6 digits`
           : null,
       current: (value: string | number) =>
         value.toString().length > 6
-          ? "Показниики повинні містити 6 символів"
+          ? t`Value has to be not less than 6 digits`
           : null,
     },
   });
@@ -27,7 +30,7 @@ export default function MeterInputGroup({ meter }: { meter: meterData }) {
     <>
       <Paper>
         <Text my="sm" fw={700} style={{ textAlign: "start" }}>
-          {meter.number} квартира
+          <Trans>Apartment {meter.number}</Trans>
         </Text>
         <form
           onChange={(e: React.ChangeEvent<HTMLFormElement>) => {
@@ -43,7 +46,7 @@ export default function MeterInputGroup({ meter }: { meter: meterData }) {
           <Group grow preventGrowOverflow gap="md" align="start">
             <NumberInput
               id="previous"
-              label="Попередні"
+              label={_(msg`Previous`)}
               {...form.getInputProps("previous")}
               leftSection={
                 <IconHistory style={{ width: rem(20), height: rem(20) }} />
@@ -55,7 +58,7 @@ export default function MeterInputGroup({ meter }: { meter: meterData }) {
             />
             <NumberInput
               id="current"
-              label="Теперішні"
+              label={_(msg`Current`)}
               {...form.getInputProps("current")}
               leftSection={
                 <IconDialpadFilled

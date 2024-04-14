@@ -5,6 +5,7 @@ import MeterInputGroup from "./MeterInputGroup";
 import { calculateBills } from "../redux/meters/metersSlice";
 import { VIEWS, setCurrentView } from "../redux/app/appSlice";
 import { BREAKING_APARTMENT } from "../constants";
+import { Trans } from "@lingui/macro";
 
 export default function MetersForm() {
   const dispatch = useAppDispatch();
@@ -35,19 +36,23 @@ export default function MetersForm() {
     <>
       <Divider my="md" />
       <Text>
-        Введіть попередні та поточні значення лічильників для кожної квартири
+        <Trans>Enter previous and current meter values of each apartment</Trans>
       </Text>
       {meters.map((meter) => {
         return (
           <div key={"meter" + meter.id}>
             {meter.id === 0 && (
               <Center mb="sm">
-                <Badge variant="default">Правий під'їзд</Badge>
+                <Badge variant="default">
+                  <Trans>Right entrance</Trans>
+                </Badge>
               </Center>
             )}
             {meter.id === BREAKING_APARTMENT && (
               <Center mb="sm">
-                <Badge variant="default">Лівий під'їзд</Badge>
+                <Badge variant="default">
+                  <Trans>Left entrance</Trans>
+                </Badge>
               </Center>
             )}
             <MeterInputGroup meter={meter} />
@@ -55,7 +60,7 @@ export default function MetersForm() {
         );
       })}
       <Button fullWidth disabled={!isFormFilled} onClick={handleSubmit}>
-        Обчислити
+        <Trans>Calculate</Trans>
       </Button>
     </>
   );

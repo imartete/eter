@@ -6,21 +6,23 @@ import { IconCheck, IconCurrencyHryvnia } from "@tabler/icons-react";
 import { VIEWS, setCurrentView } from "../redux/app/appSlice";
 import { selectBill } from "../redux/meters/selectors";
 import { notifications } from "@mantine/notifications";
+import { Trans, t } from "@lingui/macro";
 
 export default function BillForm() {
   const billFromStore = useAppSelector(selectBill);
   const [bill, setBill] = useState(billFromStore);
-  const [buttonText, setButtonText] = useState("Далі");
+  const [buttonText, setButtonText] = useState(t`Next`);
 
   const dispatch = useAppDispatch();
 
   function handleSubmit() {
-    if (typeof bill === "string") throw new Error(); // TODO: error message
+    if (typeof bill === "string")
+      throw new Error("Bill is string type, while it should be number");
     dispatch(addBill(bill));
-    setButtonText("Оновити суму");
+    setButtonText(t`Update bill sum`);
     dispatch(setCurrentView(VIEWS.METERS_FORM));
     notifications.show({
-      message: "Успішно оновлено рахунок",
+      message: t`Bill updated`,
       color: "green",
       icon: <IconCheck style={{ width: rem(20), height: rem(20) }} />,
       withCloseButton: false,
@@ -29,7 +31,9 @@ export default function BillForm() {
 
   return (
     <Box mb="xl">
-      <Text>Введіть суму рахунку Львівобленерго</Text>
+      <Text>
+        <Trans>Enter total bill sum</Trans>
+      </Text>
       <NumberInput
         value={bill}
         onChange={setBill}

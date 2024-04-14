@@ -7,10 +7,14 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "messages:extract": "lingui extract",
+    "messages:compile": "lingui compile"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
+    "@lingui/macro": "^4.8.0",
+    "@lingui/react": "^4.8.0",
     "@mantine/core": "^7.3.2",
     "@mantine/form": "^7.3.2",
     "@mantine/hooks": "^7.3.2",
@@ -22,13 +26,17 @@
     "react-redux": "^9.1.0"
   },
   "devDependencies": {
+    "@lingui/cli": "^4.8.0",
+    "@lingui/vite-plugin": "^4.8.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
     "@vitejs/plugin-react": "^4.0.3",
+    "babel-plugin-macros": "^3.1.0",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-lingui": "^0.3.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "postcss": "^8.4.33",

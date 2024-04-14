@@ -1,0 +1,106 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2024-04-10 22:00+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/components/MeterInputGroup.tsx:33
+#: src/components/ResultsView.tsx:102
+msgid "Apartment {0}"
+msgstr ""
+
+#: src/components/ResultsView.tsx:37
+msgid "Apt. {number} - {bill} UAH"
+msgstr ""
+
+#: src/components/BillForm.tsx:24
+msgid "Bill updated"
+msgstr ""
+
+#: src/components/MetersForm.tsx:63
+msgid "Calculate"
+msgstr ""
+
+#: src/components/ResultsView.tsx:78
+msgid "Copied"
+msgstr ""
+
+#: src/components/ResultsView.tsx:59
+msgid "Copy a message for the residents with payment amounts for each of them"
+msgstr ""
+
+#: src/components/ResultsView.tsx:78
+msgid "Copy all"
+msgstr ""
+
+#: src/components/MeterInputGroup.tsx:61
+msgid "Current"
+msgstr ""
+
+#: src/components/MetersForm.tsx:39
+msgid "Enter previous and current meter values of each apartment"
+msgstr ""
+
+#: src/components/BillForm.tsx:34
+msgid "Enter total bill sum"
+msgstr ""
+
+#: src/components/ResultsView.tsx:28
+msgid "Hello everyone! Please send your payment for electricity used the previous month until {formattedDueDate}, thanks!"
+msgstr ""
+
+#: src/components/ResultsView.tsx:28
+#~ msgid "Hello everyone! Please send your payment for electricity used the previous month until {formattedDueDate}, thanks! \\n"
+#~ msgstr ""
+
+#: src/components/MetersForm.tsx:54
+#: src/components/ResultsView.tsx:95
+msgid "Left entrance"
+msgstr ""
+
+#: src/components/ResultsView.tsx:35
+msgid "Left entrance:"
+msgstr ""
+
+#: src/components/BillForm.tsx:14
+msgid "Next"
+msgstr ""
+
+#: src/components/MeterInputGroup.tsx:49
+msgid "Previous"
+msgstr ""
+
+#: src/components/ResultsView.tsx:55
+msgid "Result"
+msgstr ""
+
+#: src/components/MetersForm.tsx:47
+#: src/components/ResultsView.tsx:88
+msgid "Right entrance"
+msgstr ""
+
+#: src/components/ResultsView.tsx:32
+msgid "Right entrance:"
+msgstr ""
+
+#: src/components/ResultsView.tsx:106
+msgid "UAH"
+msgstr ""
+
+#: src/components/BillForm.tsx:21
+msgid "Update bill sum"
+msgstr ""
+
+#: src/components/MeterInputGroup.tsx:20
+#: src/components/MeterInputGroup.tsx:24
+msgid "Value has to be not less than 6 digits"
+msgstr ""

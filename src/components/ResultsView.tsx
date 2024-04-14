@@ -15,6 +15,7 @@ import { selectCalculatedBills } from "../redux/meters/selectors";
 import { VIEWS, setCurrentView } from "../redux/app/appSlice";
 import { IconArrowLeft, IconCheck, IconCopy } from "@tabler/icons-react";
 import { BREAKING_APARTMENT } from "../constants";
+import { Trans, t } from "@lingui/macro";
 
 export default function ResultsView() {
   const dispatch = useAppDispatch();
@@ -24,15 +25,16 @@ export default function ResultsView() {
   dueDate.setDate(dueDate.getDate() + 8);
   const formattedDueDate = dueDate.toLocaleDateString("uk");
 
-  const message = `Вітаю! Сплатіть, будь ласка, за спожиту електроенергію до ${formattedDueDate}, дякую! \n`;
+  const message = t`Hello everyone! Please send your payment for electricity used the previous month until ${formattedDueDate}, thanks!`;
 
   const messageToCopy = bills.reduce((accumulator, currVal) => {
     if (currVal.id === 0) {
-      accumulator += `\n Правий під'їзд:`;
+      accumulator += "\n" + t`Right entrance:`;
     }
     if (currVal.id === BREAKING_APARTMENT)
-      accumulator += `\n \n Лівий під'їзд: `;
-    return accumulator + `\n ${currVal.number} кв.: ${currVal.bill} грн.`;
+      accumulator += "\n" + t`Left entrance: `;
+    const { number, bill } = currVal;
+    return accumulator + "\n" + t`Apt. ${number} - ${bill} UAH`;
   }, message);
 
   function handleBack() {
@@ -50,10 +52,14 @@ export default function ResultsView() {
           <IconArrowLeft style={{ width: rem(20), height: rem(20) }} />
         </ActionIcon>
         <Text size="lg" fw={700} mb="lg">
-          Результат
+          <Trans>Result</Trans>
         </Text>
       </Box>
-      <Text>Скопіюйте всі рахунки та повідомлення для мешканців</Text>
+      <Text>
+        <Trans>
+          Copy a message for the residents with payment amounts for each of them
+        </Trans>
+      </Text>
       <CopyButton value={messageToCopy}>
         {({ copied, copy }) => (
           <Button
@@ -69,7 +75,7 @@ export default function ResultsView() {
               )
             }
           >
-            {copied ? "Скопійовано" : "Копіювати всі"}
+            {copied ? t`Copied` : t`Copy all`}
           </Button>
         )}
       </CopyButton>
@@ -78,19 +84,26 @@ export default function ResultsView() {
           <div key={"result" + bill.id}>
             {bill.id === 0 && (
               <Center mb="sm">
-                <Badge variant="default">Правий під'їзд</Badge>
+                <Badge variant="default">
+                  <Trans>Right entrance</Trans>
+                </Badge>
               </Center>
             )}
             {bill.id === BREAKING_APARTMENT && (
               <Center mb="sm">
-                <Badge variant="default">Лівий під'їзд</Badge>
+                <Badge variant="default">
+                  <Trans>Left entrance</Trans>
+                </Badge>
               </Center>
             )}
             <Paper>
               <Flex justify={"space-between"}>
-                <Text mb="0">{bill.number} квартира:</Text>
                 <Text mb="0">
-                  <span style={{ fontWeight: 700 }}>{bill.bill} </span> грн.
+                  <Trans>Apartment {bill.number}</Trans>:
+                </Text>
+                <Text mb="0">
+                  <span style={{ fontWeight: 700 }}>{bill.bill} </span>
+                  <Trans>UAH</Trans>
                 </Text>
               </Flex>
             </Paper>
