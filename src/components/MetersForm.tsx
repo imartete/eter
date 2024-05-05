@@ -1,10 +1,10 @@
 import { Badge, Button, Center, Divider, Text, rem } from "@mantine/core";
-import { useAppDispatch, useAppSelector } from "../hooks/typedHooks";
-import { selectMeters } from "../redux/meters/selectors";
-import MeterInputGroup from "./MeterInputGroup";
-import { calculateBills } from "../redux/meters/metersSlice";
-import { VIEWS, setCurrentView } from "../redux/app/appSlice";
-import { BREAKING_APARTMENT } from "../constants";
+import { useAppDispatch, useAppSelector } from "@/hooks/typedHooks";
+import { selectMeters } from "@/redux/meters/selectors";
+import MeterInputGroup from "@/components/MeterInputGroup";
+import { calculateBills } from "@/redux/meters/metersSlice";
+import { VIEWS, setCurrentView } from "@/redux/app/appSlice";
+import { BREAKING_APARTMENT } from "@/constants";
 import { Trans, t } from "@lingui/macro";
 import { notifications } from "@mantine/notifications";
 import { IconX } from "@tabler/icons-react";

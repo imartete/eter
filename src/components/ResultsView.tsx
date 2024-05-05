@@ -10,11 +10,11 @@ import {
   Text,
   rem,
 } from "@mantine/core";
-import { useAppDispatch, useAppSelector } from "../hooks/typedHooks";
-import { selectCalculatedBills } from "../redux/meters/selectors";
-import { VIEWS, setCurrentView } from "../redux/app/appSlice";
+import { useAppDispatch, useAppSelector } from "@/hooks/typedHooks";
+import { selectCalculatedBills } from "@/redux/meters/selectors";
+import { VIEWS, setCurrentView } from "@/redux/app/appSlice";
 import { IconArrowLeft, IconCheck, IconCopy } from "@tabler/icons-react";
-import { BREAKING_APARTMENT } from "../constants";
+import { BREAKING_APARTMENT } from "@/constants";
 import { Trans, t } from "@lingui/macro";
 
 export default function ResultsView() {

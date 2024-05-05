@@ -1,10 +1,10 @@
 import { Box, Button, NumberInput, Text, rem } from "@mantine/core";
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks/typedHooks";
-import { addBill } from "../redux/meters/metersSlice";
+import { useAppDispatch, useAppSelector } from "@/hooks/typedHooks";
+import { addBill } from "@/redux/meters/metersSlice";
 import { IconCheck, IconCurrencyHryvnia, IconX } from "@tabler/icons-react";
-import { VIEWS, setCurrentView } from "../redux/app/appSlice";
-import { selectBill } from "../redux/meters/selectors";
+import { VIEWS, setCurrentView } from "@/redux/app/appSlice";
+import { selectBill } from "@/redux/meters/selectors";
 import { notifications } from "@mantine/notifications";
 import { Trans, t } from "@lingui/macro";
 

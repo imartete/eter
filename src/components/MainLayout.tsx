@@ -1,10 +1,10 @@
 import { AppShell, Center, Text, rem } from "@mantine/core";
-import BillForm from "./BillForm";
-import MetersForm from "./MetersForm";
-import { VIEWS } from "../redux/app/appSlice";
-import { useAppSelector } from "../hooks/typedHooks";
-import { selectCurrentView } from "../redux/app/selectors";
-import ResultsView from "./ResultsView";
+import BillForm from "@/components/BillForm";
+import MetersForm from "@/components/MetersForm";
+import { VIEWS } from "@/redux/app/appSlice";
+import { useAppSelector } from "@/hooks/typedHooks";
+import { selectCurrentView } from "@/redux/app/selectors";
+import ResultsView from "@/components//ResultsView";
 
 export default function MainLayout() {
   const currentView = useAppSelector(selectCurrentView);

@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { metersReducer } from "./meters/metersSlice";
-import { appReducer } from "./app/appSlice";
+import { metersReducer } from "@/redux/meters/metersSlice";
+import { appReducer } from "@/redux/app/appSlice";
 
 export const store = configureStore({
   reducer: {

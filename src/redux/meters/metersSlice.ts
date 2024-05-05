@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { meterCalculatedData, meterData } from "../../types";
-import { BREAKING_APARTMENT, TARIF, METERS_AMOUNT } from "../../constants";
+import { meterCalculatedData, meterData } from "@/types";
+import { BREAKING_APARTMENT, TARIF, METERS_AMOUNT } from "@/constants";
 
 interface MetersState {
   items: meterData[];

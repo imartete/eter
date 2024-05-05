@@ -1,10 +1,10 @@
-import "./App.css";
+import "@/App.css";
 import "@mantine/core/styles.css";
-import MainLayout from "./components/MainLayout";
+import MainLayout from "@/components/MainLayout";
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import { useEffect } from "react";
-import { dynamicActivate } from "./i18n";
+import { dynamicActivate } from "@/i18n";
 
 function App() {
   useEffect(() => {

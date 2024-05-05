@@ -1,4 +1,4 @@
-import { RootState } from "../store";
+import { RootState } from "@/redux/store";
 
 export const selectMeters = (state: RootState) => state.meters.items;
 export const selectBill = (state: RootState) => state.meters.bill;

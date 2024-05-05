@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+import App from "@/App.tsx";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
-import "./index.css";
+import { store } from "@/redux/store";
+import "@/index.css";
 import "@mantine/notifications/styles.css";
 import { MantineProvider, createTheme, Paper, Text } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";

@@ -1,9 +1,9 @@
 import { Group, NumberInput, Paper, Text, rem } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconDialpadFilled, IconHistory } from "@tabler/icons-react";
-import { useAppDispatch } from "../hooks/typedHooks";
-import { addMeters } from "../redux/meters/metersSlice";
-import { meterData } from "../types";
+import { useAppDispatch } from "@/hooks/typedHooks";
+import { addMeters } from "@/redux/meters/metersSlice";
+import { meterData } from "@/types";
 import { Trans, msg, t } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 

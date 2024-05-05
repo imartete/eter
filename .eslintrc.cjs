@@ -14,7 +14,6 @@ module.exports = {
     sourceType: "module",
     project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
-    EXPERIMENTAL_useProjectService: true,
   },
   plugins: ["react-refresh", "lingui"],
   rules: {
